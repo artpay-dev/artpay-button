@@ -1,103 +1,15 @@
-# ArtPay Button
+# ArtPay Button (dismesso)
 
-Questo script consente di integrare un pulsante per i pagamenti con ArtPay su qualsiasi sito web.  
-Il pulsante viene generato automaticamente all'interno di un `<div>` con l'attributo `data-artpay-button`.
+> **Questo repo non serve più (dismesso il 15/11/2026).** Non si aggiorna e non va usato.
 
-## Installazione
-
-Per utilizzare il pulsante, è necessario includere il seguente script nel proprio sito web, preferibilmente prima della chiusura del tag `<body>`:
+Il pulsante "Paga a rate" per i siti esterni ora sta nel repo `artpay-core`: sorgente in `resources/button/v1.js`, documentazione in `docs/button.md`. È servito da:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/mspintl/artpay-button@latest/dist/pay-button.js"></script>
+<script src="https://api.artpay.art/button/v1.js"></script>
 ```
 
-## Utilizzo
-Inserire un ```<div> ``` con l'attributo ```data-artpay-button``` nel punto in cui si desidera visualizzare il pulsante:
+con lo stesso contenitore `<div data-artpay-button></div>` e la stessa classe `.artpay-button` di prima. Le istruzioni di installazione per le gallerie sono nella dashboard, in Estensioni.
 
-```html
-<div data-artpay-button></div>
-```
-Lo script genererà automaticamente il pulsante all'interno di questo elemento e applicherà lo stile predefinito.
+Il vecchio indirizzo `https://cdn.jsdelivr.net/gh/mspintl/artpay-button@latest/dist/pay-button.js` (account GitHub `mspintl`, rinominato) non va più usato: quella copia non si può aggiornare.
 
-## Aggiunta di un'azione al click
-Il pulsante non ha un'azione predefinita al clic per garantire flessibilità.
-È possibile selezionarlo e aggiungere manualmente un event listener in due modi:
-
-1. Utilizzando l'attributo data-artpay-button
-2. Selezionandolo con la classe .artpay-button
-
-### Esempio di implementazione
-
-```html
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-        // Selezione tramite il contenitore data-artpay-button
-        const buttonContainer = document.querySelector("[data-artpay-button]");
-        if (buttonContainer) {
-            const button = buttonContainer.querySelector(".artpay-button");
-            if (button) {
-                button.addEventListener("click", () => {
-                    fetch("call_php.asp")
-                        .then(response => response.text())
-                        .then(data => console.log("Risultato:", data))
-                        .catch(error => console.error("Errore:", error));
-                });
-            }
-        }
-
-        // Selezione diretta tramite la classe del pulsante
-        const directButton = document.querySelector(".artpay-button");
-        if (directButton) {
-            directButton.addEventListener("click", () => {
-                fetch("call_php.asp")
-                    .then(response => response.text())
-                    .then(data => console.log("Risultato:", data))
-                    .catch(error => console.error("Errore:", error));
-            });
-        }
-    }, 100);
-});
-</script>
-
-```
-
-### Esempio completo
-
-```html
-
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArtPay Button Demo</title>
-</head>
-<body>
-
-    <h2>Pagamento con ArtPay</h2>
-    <div data-artpay-button></div>
-
-    <script src="https://cdn.jsdelivr.net/gh/mspintl/artpay-button@latest/dist/pay-button.js"></script>
-
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-            const button = document.querySelector(".artpay-button");
-            if (button) {
-                button.addEventListener("click", () => {
-                    fetch("call_php.asp")
-                        .then(response => response.text())
-                        .then(data => console.log("Risultato:", data))
-                        .catch(error => console.error("Errore:", error));
-                });
-            }
-        }, 100);
-    });
-    </script>
-
-</body>
-</html>
-
-```
+Il repo resta archiviato solo come storia: contiene le versioni precedenti del pulsante (con il logo Artpay e il tooltip con il testo approvato, tag `v1.0.0` e `v1.0.04`).
